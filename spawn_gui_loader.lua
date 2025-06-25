@@ -1,17 +1,19 @@
--- spawn_gui.lua
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local SpawnEvent = ReplicatedStorage:WaitForChild("SpawnRequest")
+-- spawn_gui_loader.lua
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
--- Tworzymy ScreenGui jeśli nie istnieje
-local screenGui = playerGui:FindFirstChild("SpawnGUI") or Instance.new("ScreenGui")
+-- RemoteEvent do komunikacji
+local SpawnEvent = ReplicatedStorage:WaitForChild("SpawnRequest")
+
+-- GUI
+local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "SpawnGUI"
 screenGui.Parent = playerGui
 
--- Dane o przedmiotach (możesz rozszerzać)
+-- Dane spawnów (kategorie i itemy)
 local spawnData = {
 	Siona = {
 		{label = "Marchewka", itemName = "CarrotSeed"},
@@ -87,4 +89,4 @@ local function createGui()
 end
 
 createGui()
-Add spawn GUI script
+
